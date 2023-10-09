@@ -73,15 +73,15 @@ public class Main {
         }
         else if (string.contains("-")) {
             String[] array = string.split("-");
-            result = Integer.parseInt(array[0]) - Integer.parseInt(array[1]);
+            result = Double.parseDouble(array[0]) - Double.parseDouble(array[1]);
         }
         else if (string.contains("*")) {
             String[] array = string.split("[*]");  // TODO знак "*" без скобок не принимается в качестве разделителя (?)
-            result = Integer.parseInt(array[0]) * Integer.parseInt(array[1]);
+            result = Double.parseDouble(array[0]) * Double.parseDouble(array[1]);
         }
         else if (string.contains("/")) {
             String[] array = string.split("/");
-            result = (double) Integer.parseInt(array[0]) / Integer.parseInt(array[1]);
+            result = Double.parseDouble(array[0]) / Double.parseDouble(array[1]);
         }
         else System.out.println("Неверный ввод");
         return result;
