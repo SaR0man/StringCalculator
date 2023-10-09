@@ -19,10 +19,10 @@ import java.util.Scanner;
 public class Main {
 
 
-    public static String[]signs = {"+", "-", "*", "/"};
+    public static String signs = "+-*/";  // {"+", "-", "*", "/"}
     public static String string;  // вводимая строка
-    public static int signIndexCurr;  // индекс текущего знака действия
-    public static int signIndexNext;  // индекс следующего знака действия
+    public static int signIndexCurr = 0;  // индекс текущего знака действия
+    public static int signIndexNext = 0;  // индекс следующего знака действия
 //    public static String workString; // рабочая функциональная строка
 
 
@@ -41,11 +41,49 @@ public class Main {
 
     public static double output() {  //// решение выражения и вывод результата
         double result = 0;
-        for (int i = 1; i < string.length() - 1; i++) {  // начинаем поиск знака действия с индекса 1 и заканчиваем предпоследним
-            for (int j = 0; j < 4; j++) {
-
-            }
+//        for (int i = 1; i < string.length() - 1; i++) {  // начинаем поиск знака действия с индекса 1 и заканчиваем предпоследним
+//            System.out.print("берем символ " + string.charAt(i) + " и сравниваем с символом ");
+//            for (int j = 0; j < 4; j++) {
+//                System.out.println(signs.charAt(j));
+//                if (string.charAt(i) == signs.charAt(0)) {
+//                    System.out.println("Знак '+' найден на позиции " + i);
+//                    signIndexCurr = i;
+//                    break;
+//                }
+//                else if (string.charAt(i) == signs.charAt(1)) {
+//                    System.out.println("Знак '-' найден на позиции " + i);
+//                    signIndexCurr = i;
+//                    break;
+//                }
+//                else if (string.charAt(i) == signs.charAt(2)) {
+//                    System.out.println("Знак '*' найден на позиции " + i);
+//                    signIndexCurr = i;
+//                    break;
+//                }
+//                else if (string.charAt(i) == signs.charAt(3)) {
+//                    System.out.println("Знак '/' найден на позиции " + i);
+//                    signIndexCurr = i;
+//                    break;
+//                }
+//            }
+//        }
+        if (string.contains("+")) {
+            String[] array = string.split("[+]");  // TODO знак "+" без скобок не принимается в качестве разделителя (?)
+            result = Double.parseDouble(array[0]) + Double.parseDouble(array[1]);
         }
+        else if (string.contains("-")) {
+            String[] array = string.split("-");
+            result = Integer.parseInt(array[0]) - Integer.parseInt(array[1]);
+        }
+        else if (string.contains("*")) {
+            String[] array = string.split("[*]");  // TODO знак "*" без скобок не принимается в качестве разделителя (?)
+            result = Integer.parseInt(array[0]) * Integer.parseInt(array[1]);
+        }
+        else if (string.contains("/")) {
+            String[] array = string.split("/");
+            result = (double) Integer.parseInt(array[0]) / Integer.parseInt(array[1]);
+        }
+        else System.out.println("Неверный ввод");
         return result;
     }
 
@@ -65,5 +103,6 @@ public class Main {
 
     public static void main(String[] args) {
         input();
+        System.out.println("Результат: " + output());
     }
 }
